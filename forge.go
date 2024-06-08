@@ -1,9 +1,8 @@
-package main
+package forge
 
 import (
 	"fmt"
 	"math/big"
-	"os"
 	"strings"
 
 	"github.com/libp2p/go-libp2p/core/peer"
@@ -55,17 +54,4 @@ func ForgePeerID(s string) (peer.ID, error) {
 		panic(err)
 	}
 	return p, nil
-}
-
-func main() {
-	if len(os.Args) != 2 || os.Args[1][0] == '-' {
-		fmt.Println("  Usage: ./forge <base58 peerid suffix>\n  Example: ./forge ooooPEER\n          > 1EooooPEER")
-		os.Exit(0)
-	}
-	forged, err := ForgePeerID(os.Args[1])
-	if err != nil {
-		fmt.Println("Error:", err)
-		os.Exit(0)
-	}
-	fmt.Println(forged)
 }
